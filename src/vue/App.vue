@@ -1,8 +1,9 @@
 <template>
 	<div id="app">
-		<Sidebar />
+		<Sidebar @set-current-screen="setCurrentScreen"/>
 		<Musics v-if="currentScreen == 'Musics'" />
 		<ProfileMusics v-else-if="currentScreen == 'ProfileMusics'" />
+		<Users v-else-if="currentScreen == 'Users'" />
 		<UserMusics v-else />
 	</div>
 </template>
@@ -12,18 +13,16 @@
 	import ProfileMusics from './components/ProfileMusics';
 	import Sidebar from './components/Sidebar';
 	import UserMusics from './components/UserMusics';
+	import Users from './components/Users';
 
 	export default {
 		components: {
-			Musics, Sidebar, ProfileMusics, UserMusics
+			Musics, Sidebar, ProfileMusics, UserMusics, Users
 		},
 		data() {
 			return {
 				currentScreen: 'Users',
 			}
-		},
-		created() {
-			this.$on('set-current-screen', this.setCurrentScreen);
 		},
 		methods: {
 			setCurrentScreen(screen) {

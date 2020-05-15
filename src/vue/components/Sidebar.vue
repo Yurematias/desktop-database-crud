@@ -1,21 +1,21 @@
 <template>
 	<nav id="sidenav">
 		<ul>
-			<li>
+			<li @click="setCurrentScreen('Users')">
 				<FontAwesomeIcon icon="user" />
 				<span>Users</span>
 			</li>
-			<li>
+			<li @click="setCurrentScreen('Musics')">
 				<FontAwesomeIcon icon="music" />
-				Musics
+				<span>Musics</span>
 			</li>
-			<li>
-				<FontAwesomeIcon icon="" />
-				ProfileMusics
+			<li @click="setCurrentScreen('UserMusics')">
+				<FontAwesomeIcon icon="headphones-alt" />
+				<span>User Musics</span>
 			</li>
-			<li>
-				<FontAwesomeIcon icon="" />
-				UserMusics
+			<li @click="setCurrentScreen('ProfileMusics')">
+				<FontAwesomeIcon icon="file-audio" />
+				<span>Profile Musics</span>
 			</li>
 		</ul>
 	</nav>
@@ -23,7 +23,11 @@
 
 <script>
 	export default {
-			
+		methods: {
+			setCurrentScreen(screen) {
+				this.$emit('set-current-screen', screen);
+			}
+		}
 	}
 </script>
 
@@ -31,10 +35,10 @@
 	#sidenav {
 		background-color: rgb(41, 39, 40);
 		padding: 25px;
-		width: 220px;
+		width: 215px;
 		color: rgb(240, 240, 240);
 		height: 100vh;
-		font-size: 1.6rem;
+		font-size: 1.5rem;
 	}
 	#sidenav > ul {
 		height: 100%;
@@ -44,7 +48,7 @@
 	}
 	#sidenav > ul > li {
 		cursor: pointer;
-		padding: 15px;
+		padding: 18px 12px;
 		justify-content: center;
 		align-items: center;
 		text-decoration: none;
@@ -58,7 +62,7 @@
 		border-left-style: solid;
 		border-left-color: brown;
 		border-left-width: 8px;
-		transition: 0.3s;
+		transition: 0.33s;
 		border-top-right-radius: 10%;
 		border-bottom-right-radius: 10%;
 	}
