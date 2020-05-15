@@ -1,6 +1,4 @@
-# template-vuelectron
-
-Template to create VueJS + Electron applications
+# desktop-mysql-crud
 
 ## Project setup
 ```
