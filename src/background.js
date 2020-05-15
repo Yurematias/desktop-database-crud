@@ -30,9 +30,11 @@ function createWindow () {
     win.loadURL('app://./index.html')
   }
 
+  
   win.webContents.on('did-finish-load', () => {
     console.log('>>>> Electron app launched <<<<');
     console.log('To see developer tools type Ctrl+Shift+I.');
+    win.setTitle('MySql-CRUD');
     win.setMenuBarVisibility(false);
   })
 

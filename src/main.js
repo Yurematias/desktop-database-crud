@@ -1,8 +1,16 @@
 import Vue from 'vue'
-import App from './App.vue'
+import App from './vue/App.vue'
 
-Vue.config.productionTip = false
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUser, faMusic } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+ 
+library.add(faUser, faMusic);
+ 
+Vue.component('FontAwesomeIcon', FontAwesomeIcon);
+
+Vue.config.productionTip = false;
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+	render: h => h(App),
+}).$mount('#app');
