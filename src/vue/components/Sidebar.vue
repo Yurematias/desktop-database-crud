@@ -35,7 +35,7 @@
 	#sidenav {
 		background-color: rgb(41, 39, 40);
 		padding: 25px;
-		width: 215px;
+		width: 220px;
 		color: rgb(240, 240, 240);
 		height: 100vh;
 		font-size: 1.5rem;
@@ -55,12 +55,13 @@
 		display: flex;
 		flex-direction: column;
 		text-align: center;
+		user-select: none;
 	}
 	#sidenav > ul > li:hover {
 		color: white;
 		background-color: rgba(56, 54, 55, 0.349);
 		border-left-style: solid;
-		border-left-color: brown;
+		border-left-color: #107c10;
 		border-left-width: 8px;
 		transition: 0.33s;
 		border-top-right-radius: 10%;

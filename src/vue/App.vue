@@ -45,4 +45,63 @@
 	#app {
 		display: flex;
 	}
+	.flex {
+		display: flex;
+	}
+	.justify-center {
+		justify-content: center;
+	}
+	.justify-around {
+		justify-content: space-around;
+	}
+	.justify-evenly {
+		justify-content: space-evenly;
+	}
+	.column {
+		flex-direction: column;
+	}
+	.align-center {
+		align-items: center;
+	}
+	.align-around {
+		align-items: space-around;
+	}
+	section {
+        width: 100%;
+    }
+    section > .result {
+        border-color: black;
+        border-style: solid;
+        border-width: 1px;
+        width: 200px;
+        height: 300px;
+    }
+    section > .forms-div {
+        height: 430px;
+		user-select: none;
+    }
+    section > div > form > input {
+        border-radius: 5px;
+        margin: 2px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #777;
+		font-size: 1.2rem;
+        padding: 5px 10px;
+        width: 240px;
+    }
+	section > div > form > button {
+		background-color: #107c10;
+		font-size: 1.2rem;
+        padding: 5px 10px;
+        width: 240px;
+        margin: 2px;
+        border-radius: 5px;
+		color: white;
+		cursor: pointer;
+	}
+	section > div > form > button:hover {
+		filter: brightness(1.2);
+		transition: 0.3s;
+	}
 </style>
