@@ -35,7 +35,6 @@
 </script>
 
 <style scoped>
-	#app {}
 	#app > #main-content {
 		padding-left: 220px;
 		width: 100%;
