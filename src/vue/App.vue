@@ -1,10 +1,12 @@
 <template>
 	<div id="app">
 		<Sidebar @set-current-screen="setCurrentScreen"/>
-		<Musics v-if="currentScreen == 'Musics'" />
-		<ProfileMusics v-else-if="currentScreen == 'ProfileMusics'" />
-		<Users v-else-if="currentScreen == 'Users'" />
-		<UserMusics v-else />
+		<div id="main-content">
+			<Musics v-if="currentScreen == 'Musics'" />
+			<ProfileMusics v-else-if="currentScreen == 'ProfileMusics'" />
+			<Users v-else-if="currentScreen == 'Users'" />
+			<UserMusics v-else />
+		</div>
 	</div>
 </template>
 
@@ -31,3 +33,11 @@
 		}
 	}
 </script>
+
+<style scoped>
+	#app {}
+	#app > #main-content {
+		padding-left: 220px;
+		width: 100%;
+	}
+</style>

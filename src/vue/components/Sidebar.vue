@@ -50,6 +50,7 @@
 		color: rgb(240, 240, 240);
 		height: 100vh;
 		font-size: 1.5rem;
+		position: fixed;
 	}
 	#sidenav > ul {
 		height: 100%;
