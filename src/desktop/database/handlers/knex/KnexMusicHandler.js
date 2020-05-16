@@ -1,4 +1,4 @@
-const MusicHandler = require('../AbstractMusicHandler');
+const MusicHandler = require('../abstract/AbstractMusicHandler');
 
 module.exports = class KnexMusicHandler extends MusicHandler {
     /**

@@ -1,4 +1,4 @@
-const AbstractUserHandler = require('../AbstractUsersHandler');
+const AbstractUserHandler = require('../abstract/AbstractUsersHandler');
 
 module.exports = class KnexUserHandler extends AbstractUserHandler {
     constructor(connection) {

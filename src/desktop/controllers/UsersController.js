@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const KnexUsersHandler = require('../database/handlers/knexHandlers/KnexUsersHandler');
+const KnexUsersHandler = require('../database/handlers/knex/KnexUsersHandler');
 
 let usersTable;
 
