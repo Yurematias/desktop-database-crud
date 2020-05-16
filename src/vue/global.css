@@ -43,6 +43,8 @@ section > .result {
     border-width: 1px;
     width: 200px;
     height: 300px;
+    display: flex;
+    flex-direction: column;
 }
 section > .forms-div {
     height: 430px;

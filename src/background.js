@@ -1,5 +1,6 @@
 'use strict'
 
+import './desktop';
 import { app, protocol, BrowserWindow } from 'electron'
 import {
   createProtocol,
