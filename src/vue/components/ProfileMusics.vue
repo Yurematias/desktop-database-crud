@@ -1,5 +1,5 @@
 <template>
-    <section id="users" class="justify-evenly flex">
+    <section class="justify-evenly flex">
         <div class="flex column forms-div justify-around">
             <form class="flex column justify-around">
                 <h2>Create Profile Music</h2>
@@ -27,7 +27,3 @@
         
     }
 </script>
-
-<style scoped>
-    
-</style>

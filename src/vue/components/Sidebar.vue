@@ -1,19 +1,19 @@
 <template>
 	<nav id="sidenav">
 		<ul>
-			<li @click="setCurrentScreen('Users')">
+			<li @click="setCurrentScreen('Users')" :class="isActived('Users')">
 				<FontAwesomeIcon icon="user" />
 				<span>Users</span>
 			</li>
-			<li @click="setCurrentScreen('Musics')">
+			<li @click="setCurrentScreen('Musics')" :class="isActived('Musics')">
 				<FontAwesomeIcon icon="music" />
 				<span>Musics</span>
 			</li>
-			<li @click="setCurrentScreen('UserMusics')">
+			<li @click="setCurrentScreen('UserMusics')" :class="isActived('UserMusics')">
 				<FontAwesomeIcon icon="headphones-alt" />
 				<span>User Musics</span>
 			</li>
-			<li @click="setCurrentScreen('ProfileMusics')">
+			<li @click="setCurrentScreen('ProfileMusics')" :class="isActived('ProfileMusics')">
 				<FontAwesomeIcon icon="file-audio" />
 				<span>Profile Musics</span>
 			</li>
@@ -23,11 +23,22 @@
 
 <script>
 	export default {
+		data() {
+			return {
+				currentScreen: 'Users'
+			}
+		},
 		methods: {
 			setCurrentScreen(screen) {
+				this.currentScreen = screen;
 				this.$emit('set-current-screen', screen);
+			},
+			isActived(option) {
+				return {
+					active: this.currentScreen === option
+				}
 			}
-		}
+		},
 	}
 </script>
 
@@ -57,7 +68,7 @@
 		text-align: center;
 		user-select: none;
 	}
-	#sidenav > ul > li:hover {
+	#sidenav > ul > li:hover, .active {
 		color: white;
 		background-color: rgba(56, 54, 55, 0.349);
 		border-left-style: solid;
