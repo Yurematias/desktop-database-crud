@@ -1,8 +1,8 @@
-const MusicHandler = require('../abstract/AbstractMusicHandler');
+const MusicDAO = require('../abstract/AbstractMusicDAO');
 
-module.exports = class KnexMusicHandler extends MusicHandler {
+module.exports = class KnexMusicDAO extends MusicDAO {
     /**
-     * Handle object to manipulate with the musics table data
+     * Data Access Object to manipulate the table of Musics of the database
      * 
      * @param {Object} connection the connection object 
      */

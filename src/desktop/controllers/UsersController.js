@@ -1,12 +1,12 @@
 const crypto = require('crypto');
-const KnexUsersHandler = require('../database/handlers/knex/KnexUsersHandler');
+const KnexUserDAO = require('../persistance/handlers/knex/KnexUserDAO');
 
-let usersTable;
+let userDAO;
 
 async function didUserAlreadyExists(email) {
     let response;
     try {
-        response = await usersTable.selectUserByEmail(email);
+        response = await userDAO.selectUserByEmail(email);
         return response;
     } catch (error) {
         return true;
@@ -18,7 +18,7 @@ class UsersController {
         if (!connection) {
             throw new Error('Missing parameter connection');
         }
-        usersTable = new KnexUsersHandler(connection);
+        userDAO = new KnexUserDAO(connection);
     }
     async create(evt, data) {
         const id = crypto.randomBytes(4).toString('HEX');
@@ -27,7 +27,7 @@ class UsersController {
             throw new Error('this email already have an account');
         } else {
             try {
-                await usersTable.insert(dataToInsert);
+                await userDAO.insert(dataToInsert);
                 // equivalent to Promise.resolve(); in a promise syntax
                 return 'user inserted succefully';
             } catch (error) {
@@ -37,7 +37,7 @@ class UsersController {
         }
     }
     async list(req, res) {
-        const users = await usersTable.selectAll();
+        const users = await userDAO.selectAll();
         if (users) {
             // equivalent to Promise.resolve(); in a promise syntax
             return users;

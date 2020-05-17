@@ -1,4 +1,4 @@
-module.exports = class AbstractUsersHandler {
+module.exports = class AbstractUserDAO {
     async insert(user) {}
     async selectAll() {}
     async selectUserByEmail(email) {}

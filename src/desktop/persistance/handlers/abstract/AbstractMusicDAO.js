@@ -1,4 +1,4 @@
-module.exports = class AbstractMusicHandler {
+module.exports = class AbstractMusicDAO {
     insert() {}
     selectId(musicName, artist) {}
     selectAll() {}

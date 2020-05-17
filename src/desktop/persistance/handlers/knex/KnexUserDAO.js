@@ -1,6 +1,6 @@
-const AbstractUserHandler = require('../abstract/AbstractUsersHandler');
+const AbstractUserDAO = require('../abstract/AbstractUserDAO');
 
-module.exports = class KnexUserHandler extends AbstractUserHandler {
+module.exports = class KnexUserDAO extends AbstractUserDAO {
     constructor(connection) {
         super();
         if (connection) {
