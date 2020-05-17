@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const KnexUserDAO = require('../persistance/handlers/knex/KnexUserDAO');
+const KnexUserDAO = require('../persistance/database-handlers/knex/KnexUserDAO');
 
 let userDAO;
 
