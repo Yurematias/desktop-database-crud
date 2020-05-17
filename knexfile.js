@@ -1,9 +1,10 @@
 module.exports = {
 	development: {
 		client: 'mysql',
+		version: '8.0',
 		connection: {
 			host : '127.0.0.1',
-			user : 'Yure',
+			user : 'root',
 			password : '26052000',
 			database : 'lyric_book'
 		},
