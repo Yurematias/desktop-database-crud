@@ -21,6 +21,10 @@ class UsersController {
         userDAO = new KnexUserDAO(connection);
     }
     async create(data) {
+        if (!data.email || !data.name || !data.password) {
+            throw new Error('missing argument data');
+        }
+        console.log('UsersController: ', data);
         const id = crypto.randomBytes(4).toString('HEX');
         const dataToInsert = {...data, id };
         if (await didUserAlreadyExists(data.email)) {

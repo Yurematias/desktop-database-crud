@@ -8,7 +8,7 @@
                 <input type="text" placeholder="password" v-model="password">
                 <button type="submit">Create</button>
             </form>
-            <form class="flex column justify-around">
+            <form class="flex column justify-around" @submit="searchUser">
                 <h2>Search User</h2>
                 <input type="email" placeholder="email" v-model="emailForSearch">
                 <input type="text" placeholder="password" v-model="passwordForSearch">
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-    // import axios from 'axios';
+    import { ipcRenderer } from 'electron'
 
     export default {
         data() {
@@ -43,13 +43,17 @@
                 }
             }
         },
+        created() {
+            ipcRenderer.on('user-created', (evt, resp) => alert(resp));
+            ipcRenderer.on('user-not-created', (evt, resp) => alert(resp));
+        },
         methods: {
-            createUser() {
-                // evt.preventDefault();
-                
+            createUser(evt) {
+                evt.preventDefault()
+                ipcRenderer.send('create-user', this.user);
             },
-            searchUser() {
-
+            searchUser(evt) {
+                evt.preventDefault();
             }
         }
     }
