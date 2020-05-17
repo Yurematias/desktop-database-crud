@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "vue-cli-service electron:serve",
+    "build": "vue-cli-service ekectron:build",
     "lint": "vue-cli-service lint",
     "electron:build": "vue-cli-service electron:build",
     "electron:serve": "vue-cli-service electron:serve",
@@ -19,7 +19,8 @@
     "core-js": "^3.6.4",
     "knex": "^0.21.1",
     "mysql": "^2.18.1",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-sweetalert2": "^3.0.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.3.0",

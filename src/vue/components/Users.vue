@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 <template>
     <section class="justify-evenly flex wrap">
         <div class="flex column forms-div justify-around">
@@ -22,7 +23,7 @@
 </template>
 
 <script>
-    import { ipcRenderer } from 'electron'
+    import { users } from '../services/bridgeToDesktop';
 
     export default {
         data() {
@@ -43,14 +44,34 @@
                 }
             }
         },
-        created() {
-            ipcRenderer.on('user-created', (evt, resp) => alert(resp));
-            ipcRenderer.on('user-not-created', (evt, resp) => alert(resp));
-        },
         methods: {
-            createUser(evt) {
-                evt.preventDefault()
-                ipcRenderer.send('create-user', this.user);
+            async createUser(evt) {
+                evt.preventDefault();
+                if (this.email && this.name && this.password) {
+                    try {
+                        await users.create(this.user);
+                        this.$swal({
+                            title: 'Success',
+                            icon: 'success',
+                            text: 'User Created Sucefully',
+                            timer: 3500
+                        });
+                    } catch (error) {
+                        this.$swal({
+                            title: 'Error',
+                            icon: 'error',
+                            text: error,
+                            timer: 3500
+                        });
+                    }
+                } else {
+                    this.$swal({
+                        title: 'Error',
+                        icon: 'error',
+                        text: 'Please insert the values in the form correctly',
+                        timer: 3500
+                    });
+                }
             },
             searchUser(evt) {
                 evt.preventDefault();

@@ -38,13 +38,12 @@ section {
     width: 100%;
 }
 section > .result {
-    border-color: black;
-    border-style: solid;
-    border-width: 1px;
+    background-color: rgba(16, 124, 16, 0.349);
     width: 200px;
     height: 300px;
     display: flex;
     flex-direction: column;
+    margin: 20px;
 }
 section > .forms-div {
     height: 430px;
@@ -60,6 +59,19 @@ section > div > form > input {
     padding: 5px 10px;
     width: 240px;
 }
+
+section > div > form > textarea {
+    border-radius: 5px;
+    margin: 2px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #777;
+    font-size: 1.2rem;
+    resize: vertical;
+    padding: 5px 10px;
+    width: 240px;
+}
+
 section > div > form > button {
     background-color: #107c10;
     font-size: 1.2rem;
