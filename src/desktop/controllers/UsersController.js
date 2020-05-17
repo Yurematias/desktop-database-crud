@@ -20,7 +20,7 @@ class UsersController {
         }
         userDAO = new KnexUserDAO(connection);
     }
-    async create(evt, data) {
+    async create(data) {
         const id = crypto.randomBytes(4).toString('HEX');
         const dataToInsert = {...data, id };
         if (await didUserAlreadyExists(data.email)) {
@@ -36,7 +36,7 @@ class UsersController {
             }
         }
     }
-    async list(req, res) {
+    async list() {
         const users = await userDAO.selectAll();
         if (users) {
             // equivalent to Promise.resolve(); in a promise syntax

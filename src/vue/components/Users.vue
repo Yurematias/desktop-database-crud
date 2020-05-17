@@ -1,18 +1,18 @@
 <template>
     <section class="justify-evenly flex wrap">
         <div class="flex column forms-div justify-around">
-            <form class="flex column justify-around">
+            <form class="flex column justify-around" @submit="createUser">
                 <h2>Create User</h2>
-                <input type="text" placeholder="name">
-                <input type="email" placeholder="email">
-                <input type="text" placeholder="password">
-                <button>Create</button>
+                <input type="text" placeholder="name" v-model="name">
+                <input type="email" placeholder="email" v-model="email">
+                <input type="text" placeholder="password" v-model="password">
+                <button type="submit">Create</button>
             </form>
             <form class="flex column justify-around">
                 <h2>Search User</h2>
-                <input type="email" placeholder="email">
-                <input type="text" placeholder="password">
-                <button>Search</button>
+                <input type="email" placeholder="email" v-model="emailForSearch">
+                <input type="text" placeholder="password" v-model="passwordForSearch">
+                <button type="submit">Search</button>
             </form>
         </div>
         <div class="result">
@@ -22,7 +22,35 @@
 </template>
 
 <script>
+    // import axios from 'axios';
+
     export default {
-        
+        data() {
+            return {
+                name: '',
+                email: '',
+                password: '',
+                emailForSearch: '',
+                passwordForSearch: ''
+            }
+        },
+        computed: {
+            user() {
+                return {
+                    name: this.name,
+                    email: this.email,
+                    password: this.password
+                }
+            }
+        },
+        methods: {
+            createUser() {
+                // evt.preventDefault();
+                
+            },
+            searchUser() {
+
+            }
+        }
     }
 </script>
