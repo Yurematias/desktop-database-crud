@@ -100,9 +100,37 @@
                     });
                 }
             },
-            searchUser(evt) {
+            async searchUser(evt) {
                 evt.preventDefault();
-            }
+                if (this.emailForSearch && this.passwordForSearch) {
+                    try {
+                        const user = await users.search({ 
+                            email: this.emailForSearch,
+                            password: this.passwordForSearch
+                        });
+                        this.$swal({
+                            title: 'User found',
+                            icon: 'success',
+                            text: `${user.name}\n${user.id}`,
+                            timer: 3500
+                        });
+                    } catch (error) {
+                        this.$swal({
+                            title: 'Error',
+                            icon: 'error',
+                            text: error,
+                            timer: 3500
+                        });
+                    }
+                } else {
+                    this.$swal({
+                        title: 'Error',
+                        icon: 'error',
+                        text: 'Please insert the values in the form correctly',
+                        timer: 3500
+                    });
+                }
+            },
         }
     }
 </script>

@@ -4,8 +4,8 @@ const connection = require('../persistance/connection');
 const usersController = new UsersController(connection);
 
 module.exports = {
-    create(evt, data) {
-        usersController.create(data).then(() => { 
+    create(evt, user) {
+        usersController.create(user).then(() => { 
             console.log('user created sucefully');
             evt.reply('user-created', 'user created sucefully');
         }).catch(error => {
@@ -13,7 +13,15 @@ module.exports = {
             evt.reply('user-not-created', error.toString());
         });
     },
-    search() {},
+    search(evt, user) {
+        usersController.search(user).then(response => {
+            console.log('user found');
+            evt.reply('user-found', response);
+        }).catch(error => {
+            console.log(error.toString());
+            evt.reply('user-not-found', error.toString());
+        });
+    },
     list(evt) {
         usersController.list().then(response => {
             evt.reply('users-listed', response);

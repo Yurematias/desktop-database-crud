@@ -41,6 +41,21 @@ class UsersController {
             }
         }
     }
+    async search(user) {
+        if (!user) {
+            throw new Error('Missing argument user');
+        } else if (!user.email || !user.password) {
+            throw new Error('missing attributes in object user');
+        }
+        const userFound = await userDAO.selectUser(user.password, user.email);
+        if (userFound) {
+            // equivalent to Promise.resolve(); in a promise syntax
+            return userFound;
+        } else {
+            // equivalent to Promise.reject(); in a promise syntax
+            throw new Error('No user found');
+        }
+    }
     async list() {
         const users = await userDAO.selectAll();
         if (users) {

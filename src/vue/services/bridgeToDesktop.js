@@ -1,4 +1,4 @@
-import { ipcRenderer } from 'electron'
+import { ipcRenderer } from 'electron';
 
 export const users = {
     create(user) {
@@ -7,8 +7,8 @@ export const users = {
             ipcRenderer.on('user-created', (evt, resp) => {
                 resolve(resp);
             });
-            ipcRenderer.on('user-not-created', (evt, resp) => {
-                reject(resp);
+            ipcRenderer.on('user-not-created', (evt, error) => {
+                reject(error);
             });
         });
     },
@@ -17,6 +17,17 @@ export const users = {
             ipcRenderer.send('list-users');
             ipcRenderer.on('users-listed', (evt, users) => {
                 resolve(users);
+            });
+        });
+    },
+    search(user) {
+        return new Promise((resolve, reject) => {
+            ipcRenderer.send('search-user', user);
+            ipcRenderer.on('user-found', (evt, user) => {
+                resolve(user);
+            });
+            ipcRenderer.on('user-not-found', (evt, error) => {
+                reject(error);
             });
         });
     }
