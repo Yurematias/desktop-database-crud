@@ -18,7 +18,7 @@
         <div class="result flex column">
             <h2>Users in database</h2>
             <div class="scroll">
-                <div class="unity" v-for="user of users" :key="user.email">
+                <div class="unity" v-for="user of users" :key="user.id">
                     <div>
                         <strong>name: </strong>
                         {{user.name}}
@@ -30,6 +30,10 @@
                     <div>
                         <strong>password: </strong>
                         {{user.password}}
+                    </div>
+                    <div>
+                        <strong>user id: </strong>
+                        {{user.id}}
                     </div>
                 </div>
             </div>
@@ -48,16 +52,7 @@
                 password: '',
                 emailForSearch: '',
                 passwordForSearch: '',
-                users: [
-                    { name: 'example', email: 'thisisanexample@gmail.com', password:'example' },
-                    { name: 'example', email: 'thisisanexample@gmail.com', password:'example' },
-                    { name: 'example', email: 'thisisanexample@gmail.com', password:'example' },
-                    { name: 'example', email: 'thisisanexample@gmail.com', password:'example' },
-                    { name: 'example', email: 'thisisanexample@gmail.com', password:'example' },
-                    { name: 'example', email: 'thisisanexample@gmail.com', password:'example' },
-                    { name: 'example', email: 'thisisanexample@gmail.com', password:'example' },
-                    { name: 'example', email: 'thisisanexample@gmail.com', password:'example' }
-                ]
+                users: []
             }
         },
         computed: {
@@ -69,12 +64,19 @@
                 }
             }
         },
+        async mounted() {
+            this.refreshUsers();
+        },
         methods: {
+            async refreshUsers() {
+                this.users = await users.list();
+            },
             async createUser(evt) {
                 evt.preventDefault();
                 if (this.email && this.name && this.password) {
                     try {
                         await users.create(this.user);
+                        this.refreshUsers();
                         this.$swal({
                             title: 'Success',
                             icon: 'success',
