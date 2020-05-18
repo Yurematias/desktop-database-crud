@@ -35,3 +35,17 @@ flush privileges;
 Try connecting using node after you do so.
 
 If that doesn't work, try it without @'localhost' part.
+
+IF THE yarn serve RESULTS IN THE ERROR OF DEPENDENCIES OF KNEX 
+
+THE SOLUTION IS CREATE A vue.config.js IN THE ROOT OF THE APPLICATION WITH THE FOLLOWING CODE:
+
+// vue.config.js
+module.exports = {
+    pluginOptions: {
+      electronBuilder: {
+        externals: ['knex', 'mysql'],
+        nodeModulesPath: ['./node_modules']
+      }
+    }
+  }
