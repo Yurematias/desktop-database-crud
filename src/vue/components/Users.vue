@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 <template>
     <section class="justify-evenly flex wrap">
         <div class="flex column forms-div justify-around">
@@ -16,8 +15,24 @@
                 <button type="submit">Search</button>
             </form>
         </div>
-        <div class="result">
-
+        <div class="result flex column">
+            <h2>Users in database</h2>
+            <div class="scroll">
+                <div class="unity" v-for="user of users" :key="user.email">
+                    <div>
+                        <strong>name: </strong>
+                        {{user.name}}
+                    </div>
+                    <div>
+                        <strong>email: </strong>
+                        {{user.email}}
+                    </div>
+                    <div>
+                        <strong>password: </strong>
+                        {{user.password}}
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </template>
@@ -32,7 +47,17 @@
                 email: '',
                 password: '',
                 emailForSearch: '',
-                passwordForSearch: ''
+                passwordForSearch: '',
+                users: [
+                    { name: 'example', email: 'thisisanexample@gmail.com', password:'example' },
+                    { name: 'example', email: 'thisisanexample@gmail.com', password:'example' },
+                    { name: 'example', email: 'thisisanexample@gmail.com', password:'example' },
+                    { name: 'example', email: 'thisisanexample@gmail.com', password:'example' },
+                    { name: 'example', email: 'thisisanexample@gmail.com', password:'example' },
+                    { name: 'example', email: 'thisisanexample@gmail.com', password:'example' },
+                    { name: 'example', email: 'thisisanexample@gmail.com', password:'example' },
+                    { name: 'example', email: 'thisisanexample@gmail.com', password:'example' }
+                ]
             }
         },
         computed: {

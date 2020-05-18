@@ -38,12 +38,32 @@ section {
     width: 100%;
 }
 section > .result {
-    background-color: rgba(16, 124, 16, 0.349);
-    width: 200px;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
     margin: 20px;
+}
+section > .result .scroll {
+    height: 85vh;
+    overflow-y: scroll;
+    margin-top: 5px;
+}
+section > .result .unity {
+    border-style: solid;
+    border-color: #777;
+    border-radius: 5px;
+    border-width: 1px;
+    width: 240px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 100px;
+    font-size: .95rem;
+    overflow-wrap: break-word;
+    padding: 10px 10px;
+    cursor: pointer;
+    margin: 5px;
+}
+section > .result .unity:hover {
+    transition: 0.3s;
+    background-color: #BBB;
 }
 section > .forms-div {
     height: 430px;
@@ -59,7 +79,6 @@ section > div > form > input {
     padding: 5px 10px;
     width: 240px;
 }
-
 section > div > form > textarea {
     border-radius: 5px;
     margin: 2px;
@@ -71,7 +90,6 @@ section > div > form > textarea {
     padding: 5px 10px;
     width: 240px;
 }
-
 section > div > form > button {
     background-color: #107c10;
     font-size: 1.2rem;
