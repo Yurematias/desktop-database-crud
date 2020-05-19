@@ -30,5 +30,16 @@ export const users = {
                 reject(error);
             });
         });
+    },
+    delete() {
+        return new Promise((resolve, reject) => {
+            ipcRenderer.send('delete-user');
+            ipcRenderer.on('user-deleted', () => {
+                resolve('User deleted successfully');
+            });
+            ipcRenderer.on('user-not-deleted', () => {
+                reject('Sorry, it was not possible to delete the user');
+            });
+        });
     }
 }

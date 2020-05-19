@@ -35,7 +35,7 @@
                         <strong>user id: </strong>
                         {{user.id}}
                     </div>
-                    <div class="flex justify-center" id="btn-delete">
+                    <div class="flex justify-center" id="btn-delete" @click="deleteUser(user)">
                         <span>delete</span>
                     </div>
                 </div>
@@ -87,6 +87,9 @@
                     config.timer = 3500;
                 }
                 this.$swal(config);
+            },
+            async deleteUser() {
+                
             },
             async refreshUsers() {
                 this.users = await users.list();
