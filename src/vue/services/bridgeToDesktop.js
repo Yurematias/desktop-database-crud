@@ -31,14 +31,14 @@ export const users = {
             });
         });
     },
-    delete() {
+    delete(userId) {
         return new Promise((resolve, reject) => {
-            ipcRenderer.send('delete-user');
+            ipcRenderer.send('delete-user', userId);
             ipcRenderer.on('user-deleted', () => {
                 resolve('User deleted successfully');
             });
-            ipcRenderer.on('user-not-deleted', () => {
-                reject('Sorry, it was not possible to delete the user');
+            ipcRenderer.on('user-not-deleted', (evt, error) => {
+                reject(error);
             });
         });
     }

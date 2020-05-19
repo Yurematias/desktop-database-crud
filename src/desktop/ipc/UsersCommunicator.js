@@ -27,7 +27,13 @@ module.exports = {
             evt.reply('users-listed', response);
         });
     },
-    delete(evt) {
-        usersController.delete().then();
+    delete(evt, userId) {
+        usersController.delete(userId).then(() => {
+            console.log('user deleted successfully');
+            evt.reply('user-deleted');
+        }).catch(error => {
+            console.log(error.toString());
+            evt.reply('user-not-deleted', error.toString());
+        })
     }
 }

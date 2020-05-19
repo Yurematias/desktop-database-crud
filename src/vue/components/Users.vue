@@ -35,7 +35,7 @@
                         <strong>user id: </strong>
                         {{user.id}}
                     </div>
-                    <div class="flex justify-center" id="btn-delete" @click="deleteUser(user)">
+                    <div class="flex justify-center" id="btn-delete" @click="deleteUser(user.id)">
                         <span>delete</span>
                     </div>
                 </div>
@@ -65,18 +65,25 @@
                     email: this.email,
                     password: this.password
                 }
+            },
+            userForSearch() {
+                return {
+                    email: this.emailForSearch,
+                    password: this.passwordForSearch
+                }
             }
         },
-        async mounted() {
+        mounted() {
             this.refreshUsers();
         },
         methods: {
-            sweetAlert(type, text, infinite) {
-                let title;
-                if (type == 'error') {
-                    title = 'Error';
-                } else {
-                    title = 'Success'
+            sweetAlert(type, text, infinite, title) {
+                if (!title) {
+                    if (type == 'error') {
+                        title = 'Error';
+                    } else {
+                        title = 'Success'
+                    }
                 }
                 const config = {
                     title: title,
@@ -88,8 +95,14 @@
                 }
                 this.$swal(config);
             },
-            async deleteUser() {
-                
+            async deleteUser(userId) {
+                try {
+                    await users.delete(userId);
+                    this.sweetAlert('success', 'User deleted successfully');
+                    this.users = this.users.filter(user => user.id != userId);
+                } catch (error) {
+                    this.sweetAlert('error', 'Sorry, it was not possible to delete the user');
+                }
             },
             async refreshUsers() {
                 this.users = await users.list();
@@ -112,13 +125,10 @@
                 evt.preventDefault();
                 if (this.emailForSearch && this.passwordForSearch) {
                     try {
-                        const user = await users.search({ 
-                            email: this.emailForSearch,
-                            password: this.passwordForSearch
-                        });
-                        this.sweetAlert('success', `${user.name}\n${user.id}`, true);
+                        const user = await users.search(this.userForSearch);
+                        this.sweetAlert('success', `name: ${user.name} - user id: ${user.id}`, true, 'User found');
                     } catch (error) {
-                        this.sweetAlert('error', error);
+                        this.sweetAlert('error', '', false, 'User not found');
                     }
                 } else {
                     this.sweetAlert('error', 'Please insert the values in the form correctyl');

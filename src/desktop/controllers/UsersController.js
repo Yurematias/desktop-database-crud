@@ -66,8 +66,12 @@ class UsersController {
             throw new Error('No users found');
         }
     }
-    async delete() {
-        
+    async delete(userId) {
+        try {
+            await userDAO.deleteUser(userId);
+        } catch (error) {
+            throw error;
+        }
     }
 }
 

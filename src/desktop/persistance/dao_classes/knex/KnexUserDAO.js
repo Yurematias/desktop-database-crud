@@ -28,4 +28,9 @@ module.exports = class KnexUserDAO extends AbstractUserDAO {
             .select('name', 'id')
             .first();
     }
+    async deleteUser(userId) {
+        return await this.connection('users')
+            .where('id', userId)
+            .delete();
+    }
 }
