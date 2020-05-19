@@ -13,10 +13,6 @@
 				<FontAwesomeIcon icon="headphones-alt" />
 				<span>User Musics</span>
 			</li>
-			<li @click="setCurrentScreen('ProfileMusics')" :class="isActived('ProfileMusics')">
-				<FontAwesomeIcon icon="file-audio" />
-				<span>Profile Musics</span>
-			</li>
 		</ul>
 	</nav>
 </template>
@@ -60,7 +56,7 @@
 	}
 	#sidenav > ul > li {
 		cursor: pointer;
-		padding: 18px 12px;
+		padding: 25px 12px;
 		justify-content: center;
 		align-items: center;
 		text-decoration: none;
