@@ -34,6 +34,9 @@
 .wrap {
     flex-wrap: wrap;
 }
+.red {
+    color: red;
+}
 section {
     width: 100%;
 }
@@ -57,17 +60,33 @@ section > .result .unity {
     height: 100px;
     font-size: .95rem;
     overflow-wrap: break-word;
-    padding: 10px 10px;
+    padding: 10px 0px;
     margin: 5px;
 }
-
+section > .result .unity > .field {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+section > .result .unity #btn-delete {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.068);
+    color: rgb(200, 0, 0);
+    border-style: solid;
+    border-top-width: 1px;
+    border-color: #CCC;
+    cursor: pointer;
+    user-select: none;
+}
+section > .result .unity #btn-delete:hover {
+    width: 100%;
+    background-color: rgba(55, 0, 0, 0.153);
+    cursor: pointer;
+}
 section > .result .unity strong {
     user-select: none;
 }
-
-section > .result .unity:hover {
-    transition: 0.3s;
-    background-color: #DDD;
+section #database-search > h2 {
+    user-select: none;
 }
 section > .forms-div {
     height: 430px;

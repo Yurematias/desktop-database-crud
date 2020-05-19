@@ -15,25 +15,28 @@
                 <button type="submit">Search</button>
             </form>
         </div>
-        <div class="result flex column">
+        <div class="result flex column" id="database-search">
             <h2>Users in database</h2>
             <div class="scroll">
                 <div class="unity" v-for="user of users" :key="user.id">
-                    <div>
+                    <div class="field">
                         <strong>name: </strong>
                         {{user.name}}
                     </div>
-                    <div>
+                    <div class="field">
                         <strong>email: </strong>
                         {{user.email}}
                     </div>
-                    <div>
+                    <div class="field">
                         <strong>password: </strong>
                         {{user.password}}
                     </div>
-                    <div>
+                    <div class="field">
                         <strong>user id: </strong>
                         {{user.id}}
+                    </div>
+                    <div class="flex justify-center" id="btn-delete">
+                        <span>delete</span>
                     </div>
                 </div>
             </div>
@@ -68,6 +71,23 @@
             this.refreshUsers();
         },
         methods: {
+            sweetAlert(type, text, infinite) {
+                let title;
+                if (type == 'error') {
+                    title = 'Error';
+                } else {
+                    title = 'Success'
+                }
+                const config = {
+                    title: title,
+                    icon: type,
+                    text,
+                }
+                if (!infinite) {
+                    config.timer = 3500;
+                }
+                this.$swal(config);
+            },
             async refreshUsers() {
                 this.users = await users.list();
             },
@@ -77,27 +97,12 @@
                     try {
                         await users.create(this.user);
                         this.refreshUsers();
-                        this.$swal({
-                            title: 'Success',
-                            icon: 'success',
-                            text: 'User Created Sucefully',
-                            timer: 3500
-                        });
+                        this.sweetAlert('success', 'User created successfully');
                     } catch (error) {
-                        this.$swal({
-                            title: 'Error',
-                            icon: 'error',
-                            text: error,
-                            timer: 3500
-                        });
+                        this.sweetAlert('error', error);
                     }
                 } else {
-                    this.$swal({
-                        title: 'Error',
-                        icon: 'error',
-                        text: 'Please insert the values in the form correctly',
-                        timer: 3500
-                    });
+                    this.sweetAlert('error', 'Please insert the values in the fields correclty')
                 }
             },
             async searchUser(evt) {
@@ -108,27 +113,12 @@
                             email: this.emailForSearch,
                             password: this.passwordForSearch
                         });
-                        this.$swal({
-                            title: 'User found',
-                            icon: 'success',
-                            text: `${user.name}\n${user.id}`,
-                            timer: 3500
-                        });
+                        this.sweetAlert('success', `${user.name}\n${user.id}`, true);
                     } catch (error) {
-                        this.$swal({
-                            title: 'Error',
-                            icon: 'error',
-                            text: error,
-                            timer: 3500
-                        });
+                        this.sweetAlert('error', error);
                     }
                 } else {
-                    this.$swal({
-                        title: 'Error',
-                        icon: 'error',
-                        text: 'Please insert the values in the form correctly',
-                        timer: 3500
-                    });
+                    this.sweetAlert('error', 'Please insert the values in the form correctyl');
                 }
             },
         }
