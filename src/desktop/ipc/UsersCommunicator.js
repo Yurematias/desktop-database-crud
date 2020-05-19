@@ -26,5 +26,8 @@ module.exports = {
         usersController.list().then(response => {
             evt.reply('users-listed', response);
         });
+    },
+    delete(evt) {
+        usersController.delete().then();
     }
 }

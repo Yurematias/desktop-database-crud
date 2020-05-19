@@ -66,6 +66,9 @@ class UsersController {
             throw new Error('No users found');
         }
     }
+    async delete() {
+        
+    }
 }
 
 module.exports = UsersController;
