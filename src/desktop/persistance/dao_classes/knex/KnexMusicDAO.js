@@ -87,10 +87,4 @@ module.exports = class KnexMusicDAO extends MusicDAO {
             throw error;
         }
     }
-    /**
-     * method to search one instance of the musics table 
-     */
-    search(musicId) {
-        
-    }
 }
