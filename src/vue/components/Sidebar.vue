@@ -18,11 +18,20 @@
 </template>
 
 <script>
+	import { library } from '@fortawesome/fontawesome-svg-core'
+	import { faUser, faMusic, faHeadphonesAlt, faFileAudio } from '@fortawesome/free-solid-svg-icons'
+	import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+	library.add(faUser, faMusic, faHeadphonesAlt, faFileAudio);
+
 	export default {
 		data() {
 			return {
 				currentScreen: 'Users'
 			}
+		},
+		components: {
+			FontAwesomeIcon
 		},
 		methods: {
 			setCurrentScreen(screen) {
