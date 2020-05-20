@@ -20,8 +20,13 @@ module.exports = class KnexMusicDAO extends MusicDAO {
      * @param {Object} music the object with the music data to be inserted in the musics table
      */
     async insert(music) {
-        if (music.name && music.artist && music.lyrics) {
-            await this.connection('musics').insert(music);
+        if (music && music.name && music.artist && music.lyrics) {
+            try {
+                await this.connection('musics').insert(music);
+                return 'created';
+            } catch (error) {
+                throw error;
+            }
         } else {
             throw new Error('Incorrect body type received');
         }
@@ -49,6 +54,43 @@ module.exports = class KnexMusicDAO extends MusicDAO {
      * method to select all the registers of the music table from the database
      */
     async selectAll() {
-        return await this.connection('musics').select('*');
+        try {
+            return await this.connection('musics').select('*');
+        } catch (error) {
+            throw error;
+        }
+    }
+    /**
+     * method to delete a instance of music in the database 
+     * 
+     * @param {String} musicId the id of the music that will be deleted
+     */
+    async delete(musicId) {
+        try {
+            await this.connection('musics')
+                .where('id', musicId)
+                .delete();
+            return 'deleted';
+        } catch (error) {
+            throw error;
+        }
+    }
+    /**
+     * method to delete all the instances of the musics table
+     */
+    async deleteAll() {
+        try {
+            await this.connection('musics')
+                .delete();
+            return 'deleted all'
+        } catch (error) {
+            throw error;
+        }
+    }
+    /**
+     * method to search one instance of the musics table 
+     */
+    search(musicId) {
+        
     }
 }
