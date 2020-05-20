@@ -34,10 +34,10 @@ class UsersController {
             try {
                 await userDAO.insert(dataToInsert);
                 // equivalent to Promise.resolve(); in a promise syntax
-                return 'user inserted succefully';
+                return 'created';
             } catch (error) {
                 // equivalent to Promise.reject(); in a promise syntax
-                throw new Error('error at insert user in the database');
+                throw new Error(error);
             }
         }
     }
@@ -47,28 +47,23 @@ class UsersController {
         } else if (!user.email || !user.password) {
             throw new Error('missing attributes in object user');
         }
-        const userFound = await userDAO.selectUser(user.password, user.email);
-        if (userFound) {
-            // equivalent to Promise.resolve(); in a promise syntax
-            return userFound;
-        } else {
-            // equivalent to Promise.reject(); in a promise syntax
-            throw new Error('No user found');
+        try {
+            return await userDAO.selectUser(user.password, user.email);
+        } catch (error) {
+            throw error;
         }
     }
     async list() {
-        const users = await userDAO.selectAll();
-        if (users) {
-            // equivalent to Promise.resolve(); in a promise syntax
-            return users;
-        } else {
-            // equivalent to Promise.reject(); in a promise syntax
-            throw new Error('No users found');
+        try {
+            return await userDAO.selectAll();
+        } catch (error) {
+            throw error;
         }
     }
     async delete(userId) {
         try {
             await userDAO.deleteUser(userId);
+            return 'deleted'
         } catch (error) {
             throw error;
         }
