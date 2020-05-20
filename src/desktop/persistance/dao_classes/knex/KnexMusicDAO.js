@@ -2,7 +2,7 @@ const MusicDAO = require('../abstract/AbstractMusicDAO');
 
 module.exports = class KnexMusicDAO extends MusicDAO {
     /**
-     * Data Access Object to manipulate the table of Musics of the database
+     * Data Access Object to manipulate the table of Musics in the database
      * 
      * @param {Object} connection the connection object 
      */

@@ -1,8 +1,7 @@
 const crypto = require('crypto');
-const connection = require('../persistance/connection');
 const KnexMusicDAO = require('../persistance/dao_classes/knex/KnexMusicDAO');
 
-const musicDAO = new KnexMusicDAO(connection);
+let musicDAO;
 
 async function musicAlreadyExists(music) {
     const musicId = await databaseHandler.selectId(music.name, music.artist);
@@ -10,6 +9,12 @@ async function musicAlreadyExists(music) {
 }
 
 class MusicsController {
+    constructor(connection) {
+        if (!connection) {
+            throw new Error('Missing parameter connection');
+        }
+        musicDAO = new KnexMusicDAO(connection); 
+    }
     async create(music) {
         if (music && music.name && music.artist && music.lyrics) {
             const id = crypto.randomBytes(4).toString('HEX');
