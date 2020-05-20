@@ -9,7 +9,7 @@ module.exports = {
             console.log('music created successfully');
             evt.reply('music-created', 'music created successfully');
         }).catch(error => {
-            console.log(error.toString());
+            console.log(error);
             evt.reply('music-not-created', error.toString());
         });
     },
@@ -23,7 +23,7 @@ module.exports = {
             console.log('music-found');
             evt.reply('music-found', response);
         }).catch(error => {
-            console.log(error.toString());
+            console.log(error);
             evt.reply('music-not-found', error.toString());
         });
     },

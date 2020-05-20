@@ -9,7 +9,7 @@ module.exports = {
             console.log('user created sucefully');
             evt.reply('user-created', 'user created sucefully');
         }).catch(error => {
-            console.log(error.toString());
+            console.log(error);
             evt.reply('user-not-created', error.toString());
         });
     },
@@ -18,7 +18,7 @@ module.exports = {
             console.log('user found');
             evt.reply('user-found', response);
         }).catch(error => {
-            console.log(error.toString());
+            console.log(error);
             evt.reply('user-not-found', error.toString());
         });
     },
@@ -32,7 +32,7 @@ module.exports = {
             console.log('user deleted successfully');
             evt.reply('user-deleted');
         }).catch(error => {
-            console.log(error.toString());
+            console.log(error);
             evt.reply('user-not-deleted', error.toString());
         })
     }

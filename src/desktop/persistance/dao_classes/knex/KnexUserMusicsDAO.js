@@ -20,13 +20,20 @@ module.exports = class KnexUserMusicsDAO extends UserMusicsDAO {
      * 
      * @param {String} musicId  The id of the music that will be inserted in user_musics table.
      * @param {String} userId   The id of the user that will be inserted in user_musics table. 
+     * 
+     * @returns {Promise<String>} returns a String confirming that the music was created
      */
     async insert(musicId, userId) {
         if (musicId && userId) {
-            await this.connection('user_musics').insert({
-                user_id: userId,
-                music_id: musicId
-            });
+            try {
+                await this.connection('user_musics').insert({
+                    user_id: userId,
+                    music_id: musicId
+                });
+                return 'created';
+            } catch (error) {
+                throw error;
+            }
         } else {
             throw new Error('missing arguments in parameters');
         }
@@ -34,7 +41,7 @@ module.exports = class KnexUserMusicsDAO extends UserMusicsDAO {
     /**
      * Select all registers from user_musics table
      * 
-     * @returns {Object} Return all of the user_musics table registers
+     * @returns {Promise<Array>} Return all of the user_musics table registers
      */
     async selectAll() {
         return await this.connection('user_musics')
@@ -48,7 +55,7 @@ module.exports = class KnexUserMusicsDAO extends UserMusicsDAO {
      * @param {String} musicId  The id of the music that will be searched in user_musics table.
      * @param {String} userId   The id of the user that will be searched in user_musics table. 
      * 
-     * @returns {Object} Return one of the user_musics table registers
+     * @returns {Promise<Object>} Return one of the user_musics table registers
      */
     async selectMusic(musicId, userId) {
         if (musicId && userId) {
@@ -65,12 +72,24 @@ module.exports = class KnexUserMusicsDAO extends UserMusicsDAO {
      * Delete a specific music of the user_musics table
      * 
      * @param {String} musicId The id of the music that will be deleted of the user_musics table.
+     * @returns {Promise<String} returns a String confirming that the instance was deleted
      */
     async deleteMusic(musicId) {
-        await this.connection('user_musics')
-            .where('music_id', musicId)
-            .delete();
+        try {
+            await this.connection('user_musics')
+                .where('music_id', musicId)
+                .delete();
+            return 'deleted';
+        } catch (error) {
+            throw error;
+        }
     }
+    /**
+     * return all musics from a specific user of the database 
+     * 
+     * @param {String} userId 
+     * @returns {Promise<Array>} returns an array containing the musics of an user
+     */
     async selectMusicsFromUser(userId) {
         return await this.connection('user_musics')
             .join('musics', 'musics.id', 'user_musics.music_id')
