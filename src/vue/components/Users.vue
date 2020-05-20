@@ -45,7 +45,9 @@
 </template>
 
 <script>
-    import { users } from '../services/bridgeToDesktop';
+    import AdvBackHandler from '../background_handlers/AdvancedBackgroundHandler';
+    import alert from '../utils/alert';
+    const users = new AdvBackHandler('user');
 
     export default {
         data() {
@@ -77,31 +79,13 @@
             this.refreshUsers();
         },
         methods: {
-            sweetAlert(type, text, infinite, title) {
-                if (!title) {
-                    if (type == 'error') {
-                        title = 'Error';
-                    } else {
-                        title = 'Success'
-                    }
-                }
-                const config = {
-                    title: title,
-                    icon: type,
-                    text,
-                }
-                if (!infinite) {
-                    config.timer = 3500;
-                }
-                this.$swal(config);
-            },
             async deleteUser(userId) {
                 try {
                     await users.delete(userId);
-                    this.sweetAlert('success', 'User deleted successfully');
+                    alert.fire('success', 'User deleted successfully');
                     this.users = this.users.filter(user => user.id != userId);
                 } catch (error) {
-                    this.sweetAlert('error', 'Sorry, it was not possible to delete the user');
+                    alert.fire('error', 'Sorry, it was not possible to delete the user');
                 }
             },
             async refreshUsers() {
@@ -113,12 +97,12 @@
                     try {
                         await users.create(this.user);
                         this.refreshUsers();
-                        this.sweetAlert('success', 'User created successfully');
+                        alert.fire('success', 'User created successfully');
                     } catch (error) {
-                        this.sweetAlert('error', error);
+                        alert.fire('error', error);
                     }
                 } else {
-                    this.sweetAlert('error', 'Please insert the values in the fields correclty')
+                    alert.fire('error', 'Please insert the values in the fields correclty')
                 }
             },
             async searchUser(evt) {
@@ -126,12 +110,12 @@
                 if (this.emailForSearch && this.passwordForSearch) {
                     try {
                         const user = await users.search(this.userForSearch);
-                        this.sweetAlert('success', `name: ${user.name} - user id: ${user.id}`, true, 'User found');
+                        alert.fire('success', `name: ${user.name} - user id: ${user.id}`, true, 'User found');
                     } catch (error) {
-                        this.sweetAlert('error', '', false, 'User not found');
+                        alert.fire('error', '', false, 'User not found');
                     }
                 } else {
-                    this.sweetAlert('error', 'Please insert the values in the form correctyl');
+                    alert.fire('error', 'Please insert the values in the form correctyl');
                 }
             },
         }
