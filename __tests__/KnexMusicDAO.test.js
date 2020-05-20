@@ -1,7 +1,7 @@
 const KnexMusicDAO = require('../src/desktop/persistance/dao_classes/knex/KnexMusicDAO');
 const connection = require('../src/desktop/persistance/connection');
 const crypto = require('crypto');
-const musicDA0 = new KnexMusicDAO(connection);
+const musicDAO = new KnexMusicDAO(connection);
 let music;
 
 beforeEach(() => {
@@ -14,15 +14,18 @@ beforeEach(() => {
 });
 
 test('Test of insertion Error: incorrect body type', async () => {
-    await expect(musicDA0.insert()).rejects.toThrowError('Incorrect body type received');
+    await expect(musicDAO.insert()).rejects.toThrowError('Incorrect body type received');
 });
 
 test('Test of insertion and removing', async () => {
-    await expect(musicDA0.insert(music)).resolves.toBe('created');
-    await expect(musicDA0.delete(music.id)).resolves.toBe('deleted');
+    await expect(musicDAO.insert(music)).resolves.toBe('created');
+    await expect(musicDAO.delete(music.id)).resolves.toBe('deleted');
 });
 
-test('Test of searching', async () => {
-    // musicDA0.insert(music);
-    // await expect(musicDA0.search)
+test('Test of search', async () => {
+    const musicToInsert = { ...music };
+    musicToInsert.id = 'test_id';
+    await musicDAO.insert(musicToInsert);
+    await expect(musicDAO.search(musicToInsert.id)).resolves.toEqual(musicToInsert);
+    musicDAO.delete(musicToInsert.id);
 });
