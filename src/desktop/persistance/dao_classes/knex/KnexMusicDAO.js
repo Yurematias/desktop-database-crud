@@ -32,20 +32,23 @@ module.exports = class KnexMusicDAO extends MusicDAO {
         }
     }
     /**
-     * method to get the id of a specific music of the database
+     * method to get a specific music of the database
      * 
      * @param {String} musicName the name of the music that will be used to search the id 
      * @param {String} artist the name of the music that will be used to search the id 
      * 
      * @returns {Object} returns the id of the music found
      */
-    async selectId(musicName, artist) {
-        if (musicName && artist) {
-            return await this.connection('musics')
-                .where('name', musicName)
-                .andWhere('artist', artist)
-                .select('id')
-                .first();
+    async search(musicId) {
+        if (musicId) {
+            try {
+                return await this.connection('musics')
+                    .where('id', musicId)
+                    .select('*')
+                    .first();
+            } catch (error) {
+                return error;
+            }
         } else {
             throw new Error('invalid arguments received');
         }
