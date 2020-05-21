@@ -12,6 +12,7 @@ const MusicsCommunicator = require('./ipc/MusicsCommunicator');
     ipcMain.on('create-music', MusicsCommunicator.create);
     ipcMain.on('search-music', MusicsCommunicator.search);
     ipcMain.on('list-musics', MusicsCommunicator.list);
+    ipcMain.on('delete-music', MusicsCommunicator.delete);
     
     ipcMain.on('create-user-music', UserMusicsCommunicator.create);
     ipcMain.on('search-user-music', UserMusicsCommunicator.search);
