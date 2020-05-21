@@ -18,8 +18,8 @@ module.exports = {
             evt.reply('musics-listed', response);
         });
     },
-    search(evt, musicId) {
-        musicsController.search(musicId).then(response => {
+    search(evt, music) {
+        musicsController.search(music).then(response => {
             console.log('music-found');
             evt.reply('music-found', response);
         }).catch(error => {
