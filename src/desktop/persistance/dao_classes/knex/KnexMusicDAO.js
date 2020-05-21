@@ -39,11 +39,12 @@ module.exports = class KnexMusicDAO extends MusicDAO {
      * 
      * @returns {Object} returns the id of the music found
      */
-    async search(musicId) {
-        if (musicId) {
+    async search(musicName, musicArtist) {
+        if (musicName && musicArtist) {
             try {
                 return await this.connection('musics')
-                    .where('id', musicId)
+                    .where('name', musicName)
+                    .andWhere('artist', musicArtist)
                     .select('*')
                     .first();
             } catch (error) {
