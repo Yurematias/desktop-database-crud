@@ -62,8 +62,7 @@ class UsersController {
     }
     async delete(userId) {
         try {
-            await userDAO.deleteUser(userId);
-            return 'deleted'
+            return await userDAO.deleteUser(userId);
         } catch (error) {
             throw error;
         }

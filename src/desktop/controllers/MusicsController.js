@@ -4,8 +4,8 @@ const KnexMusicDAO = require('../persistance/dao_classes/knex/KnexMusicDAO');
 let musicDAO;
 
 async function musicAlreadyExists(music) {
-    const musicId = await databaseHandler.selectId(music.name, music.artist);
-    return musicId || false;
+    const musicId = await musicDAO.search(music.name, music.artist);
+    return musicId ? musicId : false;
 }
 
 class MusicsController {
@@ -18,13 +18,13 @@ class MusicsController {
     async create(music) {
         if (music && music.name && music.artist && music.lyrics) {
             const id = crypto.randomBytes(4).toString('HEX');
-            const music = { ...music, id };
+            const musicToInsert = { ...music, id };
     
-            if (await musicAlreadyExists(music)) {
+            if (await musicAlreadyExists(musicToInsert)) {
                 throw new Error('This music already exists');
             } else {
                 try {
-                    return await musicDAO.insert(music);
+                    return await musicDAO.insert(musicToInsert);
                 } catch (error) {
                     throw error;
                 }
