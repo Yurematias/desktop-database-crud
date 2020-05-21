@@ -5,11 +5,11 @@ export default class AdvancedBackgroundHandler extends BackgroundHandler {
     constructor(type) {
         super(type);
     }
-    search(user) {
+    search(instance) {
         return new Promise((resolve, reject) => {
-            ipcRenderer.send(`search-${this.type}`, user);
-            ipcRenderer.on(`${this.type}-found`, (evt, user) => {
-                resolve(user);
+            ipcRenderer.send(`search-${this.type}`, instance);
+            ipcRenderer.on(`${this.type}-found`, (evt, instance) => {
+                resolve(instance);
             });
             ipcRenderer.on(`${this.type}-not-found`, (evt, error) => {
                 reject(error);
