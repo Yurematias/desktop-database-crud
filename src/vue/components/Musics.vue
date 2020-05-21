@@ -3,8 +3,8 @@
         <div class="flex column forms-div justify-around">
             <form class="flex column justify-around" @submit="createMusic">
                 <h2>Create Music</h2>
-                <input type="text" placeholder="name" v-model="name">
                 <input type="text" placeholder="artist" v-model="artist">
+                <input type="text" placeholder="music name" v-model="name">
                 <textarea 
                     cols="30" 
                     rows="5" 
@@ -16,8 +16,8 @@
             </form>
             <form class="flex column justify-around" @submit="searchMusic">
                 <h2>Search Music</h2>
-                <input type="text" placeholder="name">
-                <input type="email" placeholder="artist">
+                <input type="text" placeholder="artist" v-model="artistForSearch">
+                <input type="text" placeholder="music name" v-model="nameForSearch">
                 <button>Search</button>
             </form>
         </div>
@@ -26,16 +26,16 @@
             <div class="scroll">
                 <div class="unity" v-for="music of musics" :key="music.id">
                     <div class="field">
-                        <strong>name: </strong>
-                        {{music.name}}
-                    </div>
-                    <div class="field">
                         <strong>artist: </strong>
                         {{music.artist}}
                     </div>
                     <div class="field">
+                        <strong>name: </strong>
+                        {{music.name}}
+                    </div>
+                    <div class="field">
                         <strong>lyrics: </strong>
-                        {{music.lyrics}}
+                        {{truncateString(music.lyrics, 25) + '...'}}
                     </div>
                     <div class="field">
                         <strong>music id: </strong>
@@ -53,6 +53,7 @@
 <script>
     import alert from '../utils/alert';
     import AdvBackHandler from '../background_handlers/AdvancedBackgroundHandler';
+    import truncateString from '../utils/truncateString';
 
     const musics = new AdvBackHandler('music');
 
@@ -84,6 +85,7 @@
         },
         mounted() {
             this.refreshMusics();
+            this.truncateString = truncateString;
         },
         methods: {
             async refreshMusics() {
@@ -122,7 +124,7 @@
                         alert.fire('error', '', false, 'Music not found');
                     }
                 } else {
-                    alert.fire('error', 'Please insert the values in the form correctyl');
+                    alert.fire('error', 'Please insert the values in the form correctly');
                 }
             },
         }
