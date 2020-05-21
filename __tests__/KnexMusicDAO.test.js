@@ -24,8 +24,9 @@ test('Test of insertion and removing', async () => {
 
 test('Test of search', async () => {
     const musicToInsert = { ...music };
-    musicToInsert.id = 'test_id';
+    musicToInsert.id = 'test6';
+    await musicDAO.delete(musicToInsert.id);
     await musicDAO.insert(musicToInsert);
-    await expect(musicDAO.search(musicToInsert.id)).resolves.toEqual(musicToInsert);
+    await expect(musicDAO.search(musicToInsert.name, musicToInsert.artist)).resolves.toEqual(musicToInsert);
     musicDAO.delete(musicToInsert.id);
 });
