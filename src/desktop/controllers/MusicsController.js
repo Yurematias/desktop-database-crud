@@ -4,8 +4,8 @@ const KnexMusicDAO = require('../persistance/dao_classes/knex/KnexMusicDAO');
 let musicDAO;
 
 async function musicAlreadyExists(music) {
-    const musicId = await musicDAO.search(music.name, music.artist);
-    return musicId ? musicId : false;
+    const musicFound = await musicDAO.search(music.name, music.artist);
+    return musicFound ? musicFound : false;
 }
 
 class MusicsController {
@@ -33,10 +33,10 @@ class MusicsController {
             throw new Error('Missing parameters or atributes in argument music');
         }
     }
-    async search(musicId) {
-        if (musicId) {
+    async search(music) {
+        if (music) {
             try {
-                return await musicDAO.search(musicId);
+                return await musicDAO.search(music.name, music.artist);
             } catch (error) {
                 throw error;
             }
