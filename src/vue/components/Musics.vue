@@ -102,7 +102,7 @@
                         alert.fire('error', error);
                     }
                 } else {
-                    alert.fire('error', 'Please insert the values in the fields correclty');
+                    alert.fire('error', 'Please insert the values in the fields correctly');
                 }
             },
             async deleteMusic(musicId) {
