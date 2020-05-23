@@ -4,7 +4,7 @@
 
 ### This project use a clone of the database from my repository: <a href="http://github.com/yurematias/lyric-book">lyric-book</a>
 
-![example](screnshots/show.gif)
+![example](screenshots/show.gif)
 
 <hr>
 
