@@ -25,7 +25,7 @@ class UserMusicsController {
             throw new Error('user music already exists');
         } 
         try {
-            return await uMusicsDAO.insert(musicId, userId);
+            return await uMusicsDAO.insert(userId, musicId);
         } catch (error) {
             throw error;
         }
