@@ -1,6 +1,6 @@
-const KnexMusicDAO = require('../src/desktop/persistance/dao_classes/knex/KnexMusicDAO');
-const KnexUserDAO = require('../src/desktop/persistance/dao_classes/knex/KnexUserDAO');
-const KnexUserMusicsDAO = require('../src/desktop/persistance/dao_classes/knex/KnexUserMusicsDAO');
+const KnexMusicDAO = require('../src/desktop/persistance/dao_classes/KnexMusicDAO');
+const KnexUserDAO = require('../src/desktop/persistance/dao_classes/KnexUserDAO');
+const KnexUserMusicsDAO = require('../src/desktop/persistance/dao_classes/KnexUserMusicsDAO');
 const connection = require('../src/desktop/persistance/connection');
 const crypto = require('crypto');
 

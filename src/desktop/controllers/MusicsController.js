@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const KnexMusicDAO = require('../persistance/dao_classes/knex/KnexMusicDAO');
+const KnexMusicDAO = require('../persistance/dao_classes/KnexMusicDAO');
 
 let musicDAO;
 
