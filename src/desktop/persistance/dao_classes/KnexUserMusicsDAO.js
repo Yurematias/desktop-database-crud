@@ -44,7 +44,13 @@ module.exports = class KnexUserMusicsDAO {
         return await this.connection('user_musics')
             .join('users', 'users.id', '=', 'user_musics.user_id')
             .join('musics', 'musics.id', '=', 'user_musics.music_id')
-            .select(['users.name as user_name', 'musics.name as music_name', 'musics.artist']);
+            .select([
+                'users.name as user_name', 
+                'musics.name as music_name', 
+                'musics.artist', 
+                'user_id', 
+                'music_id'
+            ]);
     }
     /**
      * Select a only music in the user_musics table
