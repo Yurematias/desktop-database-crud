@@ -11,25 +11,18 @@
         <div class="result flex column" id="database-search">
             <h2>Users Musics in database</h2>
             <div class="scroll">
-                <div class="unity">
+                <div class="unity" v-for="userMusic of userMusics" :key="userMusic">
                     <div class="field">
                         <strong>user name: </strong>
-                        {{}}
+                        {{userMusic.user_name}}
                     </div>
                     <div class="field">
-                        <strong>user email: </strong>
-                        {{}}
+                        <strong>music name: </strong>
+                        {{userMusic.music_name}}
                     </div>
                     <div class="field">
-                        <strong>user music id: </strong>
-                        {{}}
-                    </div>
-                    <div class="field">
-                        <strong>user id: </strong>
-                        {{}}
-                    </div>
-                    <div class="flex justify-center" id="btn-delete" @click="deleteUserMusic()">
-                        <span>delete</span>
+                        <strong>music name: </strong>
+                        {{userMusic.artist}}
                     </div>
                 </div>
             </div>
@@ -76,14 +69,8 @@
                     alert.fire('error', 'Please insert the values in the fields correctly');
                 }
             },
-            async searchUserMusic(evt) {
-                evt.preventDefault();
-            },
-            async deleteUserMusic() {
-
-            },
             async refreshUserMusics() {
-
+                this.userMusics = await userMusics.list();
             }   
         }
     }
