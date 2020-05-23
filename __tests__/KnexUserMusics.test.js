@@ -23,10 +23,6 @@ const music = {
     id
 }
 
-test('test of missing parameters', async () => {
-    await expect()
-});
-
 test('test of insert and delete', async () => {
     await userDAO.insert(user);
     await musicDAO.insert(music);
