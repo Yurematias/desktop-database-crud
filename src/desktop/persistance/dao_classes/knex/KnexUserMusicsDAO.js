@@ -23,7 +23,7 @@ module.exports = class KnexUserMusicsDAO extends UserMusicsDAO {
      * 
      * @returns {Promise<String>} returns a String confirming that the music was created
      */
-    async insert(musicId, userId) {
+    async insert(userId, musicId) {
         if (musicId && userId) {
             try {
                 await this.connection('user_musics').insert({
