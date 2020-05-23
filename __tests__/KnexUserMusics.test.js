@@ -30,7 +30,7 @@ test('test of missing parameters', async () => {
 test('test of insert and delete', async () => {
     await userDAO.insert(user);
     await musicDAO.insert(music);
-
+    
     await expect(umDAO.insert(user.id, music.id)).resolves.toBe('created');
     await expect(umDAO.delete(user.id, music.id)).resolves.toBe('deleted');
 
