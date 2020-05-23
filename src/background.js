@@ -22,6 +22,7 @@ function createWindow () {
     frame: true,
     minWidth: 530,
     maxWidth: 1100,
+    icon: __dirname + '/flavicon.ico',
     webPreferences: {
       nodeIntegration: true
     } 
