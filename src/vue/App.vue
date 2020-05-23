@@ -2,9 +2,9 @@
 	<div id="app">
 		<Sidebar @set-current-screen="setCurrentScreen"/>
 		<div id="main-content">
-			<Musics v-if="currentScreen == 'Musics'" />
-			<Users v-else-if="currentScreen == 'Users'" />
-			<UserMusics v-else />
+			<Musics v-show="currentScreen == 'Musics'" />
+			<Users v-show="currentScreen == 'Users'" />
+			<UserMusics v-show="currentScreen == 'UserMusics'" />
 		</div>
 	</div>
 </template>
