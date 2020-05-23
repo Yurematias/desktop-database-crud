@@ -85,6 +85,16 @@ module.exports = class KnexUserMusicsDAO {
         }
     }
     /**
+     * Delete all the user_musics instances in the database 
+     */
+    async deleteAll() {
+        try {
+            await this.connection('user_musics').delete();
+        } catch (error) {
+            throw error;
+        }
+    }
+    /**
      * return all musics from a specific user of the database 
      * 
      * @param {String} userId 
