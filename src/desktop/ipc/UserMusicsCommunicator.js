@@ -22,5 +22,9 @@ module.exports = {
             evt.reply('user-music-not-deleted', error.toString());
         });
     },
-    list() {}
+    list() {
+        userMusicsCont.list().then(response => {
+            evt.reply('user-musics-listed', response);
+        });
+    }
 }
