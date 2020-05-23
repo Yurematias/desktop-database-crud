@@ -57,7 +57,7 @@ module.exports = class KnexUserMusicsDAO extends UserMusicsDAO {
      * 
      * @returns {Promise<Object>} Return one of the user_musics table registers
      */
-    async selectMusic(musicId, userId) {
+    async select(musicId, userId) {
         if (musicId && userId) {
             return await this.connection('user_musics')
                 .where('music_id', musicId)
@@ -71,13 +71,16 @@ module.exports = class KnexUserMusicsDAO extends UserMusicsDAO {
     /**
      * Delete a specific music of the user_musics table
      * 
-     * @param {String} musicId The id of the music that will be deleted of the user_musics table.
+     * @param {String} userId The id of the user to determinate which user_music instance will be deleted 
+     * @param {String} musicId The id of the music to determinate which user_music instance will be deleted
+     * 
      * @returns {Promise<String} returns a String confirming that the instance was deleted
      */
-    async deleteMusic(musicId) {
+    async delete(userId, musicId) {
         try {
             await this.connection('user_musics')
                 .where('music_id', musicId)
+                .andWhere('user_id', userId)
                 .delete();
             return 'deleted';
         } catch (error) {
