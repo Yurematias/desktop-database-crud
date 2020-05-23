@@ -23,4 +23,15 @@ export default class BackgroundHandler {
             });
         });
     }
+    delete(id) {
+        return new Promise((resolve, reject) => {
+            ipcRenderer.send(`delete-${this.type}`, id);
+            ipcRenderer.on(`${this.type}-deleted`, () => {
+                resolve(`${this.type} deleted successfully`);
+            });
+            ipcRenderer.on(`${this.type}-not-deleted`, (evt, error) => {
+                reject(error);
+            });
+        });
+    }
 }
